@@ -17,3 +17,13 @@ export enum DEVOPS_COLORS {
 	lightTheme = "#9333ea",
 	darkTheme = "#c084fc",
 }
+
+export enum LANGUAGES_COLORS {
+	lightTheme = "#db2777",
+	darkTheme = "#f472b6",
+}
+
+export enum SOFTSKILLS_COLORS {
+	lightTheme = "#2563eb",
+	darkTheme = "#60a5fa",
+}
