@@ -14,7 +14,6 @@ export default function Home() {
 	const [mounted, setMounted] = useState(false);
 	const [activeSection, setActiveSection] = useState("home");
 
-	// After mounting, we can safely show the UI that depends on the theme
 	useEffect(() => {
 		setMounted(true);
 	}, []);
