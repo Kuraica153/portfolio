@@ -35,6 +35,9 @@ export function ProjectCard({
 						alt={title}
 						fill
 						className="object-cover transition-transform hover:scale-105"
+						loading="lazy"
+						placeholder="blur"
+						blurDataURL="/placeholder.svg"
 					/>
 				</div>
 
