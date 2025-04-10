@@ -61,6 +61,8 @@ export function ProjectCard({
 					{githubUrl && (
 						<Link
 							href={githubUrl}
+							target="_blank"
+							rel="noopener noreferrer"
 							className="flex items-center text-sm text-purple-600 hover:text-purple-800"
 						>
 							<Github className="mr-1 h-4 w-4" /> Code
@@ -71,6 +73,7 @@ export function ProjectCard({
 							href={liveUrl}
 							className="flex items-center text-sm text-purple-600 hover:text-purple-800"
 							target="_blank"
+							rel="noopener noreferrer"
 						>
 							<ExternalLink className="mr-1 h-4 w-4" /> Visit Site
 						</Link>
