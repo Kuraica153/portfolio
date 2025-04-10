@@ -21,18 +21,30 @@ export default function Home() {
 	useEffect(() => {
 		const handleScroll = () => {
 			const sections = ["home", "projects", "skills", "contact"];
-			const scrollPosition = window.scrollY + 100;
+			const scrollPosition = window.scrollY + window.innerHeight / 2; // Adjusted to use the middle of the viewport
 
-			sections.forEach((section) => {
+			// Special case for the "home" section when at the top of the page
+			if (window.scrollY === 0) {
+				setActiveSection("home");
+				return; // Exit early since "home" is active
+			}
+
+			sections.forEach((section, index) => {
 				const element = document.getElementById(section);
 				if (element) {
 					const offsetTop = element.offsetTop;
 					const offsetHeight = element.offsetHeight;
 
+					// Check if the scroll position is within the section
 					if (
 						scrollPosition >= offsetTop &&
 						scrollPosition < offsetTop + offsetHeight
 					) {
+						setActiveSection(section);
+					}
+
+					// Special case for the last section ("contact")
+					if (index === sections.length - 1 && scrollPosition >= offsetTop) {
 						setActiveSection(section);
 					}
 				}
