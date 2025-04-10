@@ -57,6 +57,10 @@ export function SkillCard({ title, type, technologies }: SkillCardProps) {
 				return "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400";
 			case "devops":
 				return "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400";
+			case "languages":
+				return "bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400";
+			case "softskills":
+				return "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400";
 			default:
 				return "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400";
 		}
