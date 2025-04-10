@@ -10,7 +10,6 @@ export const Header = ({ activeSection }: { activeSection: string }) => {
 	const handleThemeChange = () => {
 		const newTheme: string = theme === "dark" ? "light" : "dark";
 		setTheme(newTheme);
-		console.log("setTheme", newTheme);
 	};
 
 	return (
