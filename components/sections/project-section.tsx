@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { ProjectCard } from "@/components/project-card";
 import { Button } from "@/components/ui/button";
-import kaiberai from "@/public/kaiber-ai.png";
-import mixedinkey from "@/public/mixedinkey.png";
-import onloop from "@/public/onloop.png";
-import heritagecookbook from "@/public/heritage-cookbook.png";
-import portfolio from "@/public/portfolio.png";
+import kaiberai from "@/public/kaiber-ai.webp";
+import mixedinkey from "@/public/mixedinkey.webp";
+import onloop from "@/public/onloop.webp";
+import heritagecookbook from "@/public/heritage-cookbook.webp";
+import portfolio from "@/public/portfolio.webp";
 
 export const ProjectSection = () => {
 	return (
