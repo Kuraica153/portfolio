@@ -27,34 +27,37 @@ export function ProjectCard({
 	liveUrl,
 }: ProjectCardProps) {
 	return (
-		<Card className="overflow-hidden transition-all hover:shadow-lg border-border bg-card/50 backdrop-blur-sm rounded-2xl">
-			<div className="relative h-48 w-full overflow-hidden">
-				<Image
-					src={image || "/placeholder.svg"}
-					alt={title}
-					fill
-					className="object-cover transition-transform hover:scale-105"
-				/>
-			</div>
-			<CardHeader>
-				<h3 className="text-xl font-bold">{title}</h3>
-			</CardHeader>
-			<CardContent>
-				<p className="text-muted-foreground mb-4">{description}</p>
-				<div className="flex flex-wrap gap-2">
-					{tags.map((tag) => (
-						<Badge
-							key={tag}
-							variant="outline"
-							className="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
-						>
-							{tag}
-						</Badge>
-					))}
+		<Card className="flex flex-col justify-between overflow-hidden transition-all hover:shadow-lg border-border bg-card/50 backdrop-blur-sm rounded-2xl">
+			<div>
+				<div className="relative h-48 w-full overflow-hidden">
+					<Image
+						src={image || "/placeholder.svg"}
+						alt={title}
+						fill
+						className="object-cover transition-transform hover:scale-105"
+					/>
 				</div>
-			</CardContent>
+
+				<CardHeader>
+					<h3 className="text-xl font-bold">{title}</h3>
+				</CardHeader>
+				<CardContent>
+					<p className="text-muted-foreground mb-4">{description}</p>
+					<div className="flex flex-wrap gap-2">
+						{tags.map((tag) => (
+							<Badge
+								key={tag}
+								variant="outline"
+								className="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+							>
+								{tag}
+							</Badge>
+						))}
+					</div>
+				</CardContent>
+			</div>
 			{(githubUrl || liveUrl) && (
-				<CardFooter className="flex gap-4">
+				<CardFooter className="flex gap-4 justify-end">
 					{githubUrl && (
 						<Link
 							href={githubUrl}
@@ -67,8 +70,9 @@ export function ProjectCard({
 						<Link
 							href={liveUrl}
 							className="flex items-center text-sm text-purple-600 hover:text-purple-800"
+							target="_blank"
 						>
-							<ExternalLink className="mr-1 h-4 w-4" /> Live Demo
+							<ExternalLink className="mr-1 h-4 w-4" /> Visit Site
 						</Link>
 					)}
 				</CardFooter>

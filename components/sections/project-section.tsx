@@ -5,6 +5,7 @@ import kaiberai from "@/public/kaiber-ai.png";
 import mixedinkey from "@/public/mixedinkey.png";
 import onloop from "@/public/onloop.png";
 import heritagecookbook from "@/public/heritage-cookbook.png";
+import portfolio from "@/public/portfolio.png";
 
 export const ProjectSection = () => {
 	return (
@@ -35,12 +36,14 @@ export const ProjectSection = () => {
 							"Tanstack Query",
 						]}
 						image={kaiberai}
+						liveUrl="https://kaiber.ai/"
 					/>
 					<ProjectCard
 						title="Mixed in key"
 						description="A web page promoting a music software that helps DJs and producers create harmonic mixes. The page is designed to be visually appealing and user-friendly, with a focus on showcasing the software's features and benefits."
 						tags={["Wordpress", "MySQL", "Bootstrap", "PHP"]}
 						image={mixedinkey}
+						liveUrl="https://mixedinkey.com/"
 					/>
 					<ProjectCard
 						title="Onloop"
@@ -55,6 +58,7 @@ export const ProjectSection = () => {
 							"Azure",
 						]}
 						image={onloop}
+						liveUrl="https://dev.onloop.ca/"
 					/>
 					<ProjectCard
 						title="Heritage cookbook"
@@ -68,6 +72,15 @@ export const ProjectSection = () => {
 							"Docker",
 						]}
 						image={heritagecookbook}
+						liveUrl="https://heritagecookbook.com/"
+					/>
+					<ProjectCard
+						title="Portfolio"
+						description="My personal portfolio website, showcasing my skills, projects, and experience. The website is designed to be visually appealing and user-friendly, with a focus on highlighting my work and greate sense of humor."
+						tags={["Next.js", "Tailwind CSS", "Typescript", "Shadcn"]}
+						image={portfolio}
+						liveUrl="https://kuraica.com"
+						githubUrl="https://github.com/kuraica153/portfolio"
 					/>
 				</div>
 
