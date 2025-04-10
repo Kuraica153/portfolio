@@ -12,3 +12,8 @@ export enum DB_COLORS {
 	lightTheme = "#059669",
 	darkTheme = "#34d399",
 }
+
+export enum DEVOPS_COLORS {
+	lightTheme = "#9333ea",
+	darkTheme = "#c084fc",
+}
