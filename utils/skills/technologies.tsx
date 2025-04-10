@@ -54,6 +54,7 @@ import {
 	HashIcon as Html,
 	MessageCircle,
 	Plug,
+	Puzzle,
 } from "lucide-react";
 
 export const frontend = [
@@ -126,7 +127,7 @@ export const languages = [
 export const softskills = [
 	{ name: "Communication", icon: <MessageCircle className="h-5 w-5" /> },
 	{ name: "Teamwork", icon: <HandshakeIcon className="h-5 w-5" /> },
-	{ name: "Problem Solving", icon: <ProblemSolvingIcon /> },
+	{ name: "Problem Solving", icon: <Puzzle /> },
 	{ name: "Time Management", icon: <Clock className="h-5 w-5" /> },
 	{ name: "Adaptability", icon: <Plug className="h-5 w-5" /> },
 	{ name: "Creativity", icon: <Brush className="h-5 w-5" /> },

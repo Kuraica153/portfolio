@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import image from "@/public/image.png";
+import me from "@/public/me.webp";
 
 export const HeroSection = () => {
 	const handleDownloadResume = () => {
@@ -55,9 +55,10 @@ export const HeroSection = () => {
 								<div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
 									<div className="absolute inset-0 flex items-center justify-center text-white text-9xl font-bold opacity-80">
 										<Image
-											src={image}
+											src={me}
 											alt="Just me"
 											className="rounded-full object-cover w-full h-full"
+											loading="eager"
 										/>
 									</div>
 									<div className="absolute bottom-0 w-full bg-black/30 backdrop-blur-sm p-5 text-center text-white">
