@@ -6,7 +6,15 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"docker:dev:up": "docker-compose -f docker-compose.dev.yml up -d",
+		"docker:dev:down": "docker-compose -f docker-compose.dev.yml down",
+		"docker:dev:clean": "docker-compose -f docker-compose.dev.yml down -v",
+		"docker:dev:logs": "docker-compose -f docker-compose.dev.yml logs -f",
+		"docker:prod:up": "docker-compose up -d",
+		"docker:prod:down": "docker-compose down",
+		"docker:prod:build": "docker-compose up -d --build",
+		"docker:prod:logs": "docker-compose logs -f"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.9.1",
