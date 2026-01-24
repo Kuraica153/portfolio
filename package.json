@@ -4,9 +4,16 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "prisma generate && next build",
 		"start": "next start",
 		"lint": "next lint",
+		"db:migrate": "prisma migrate dev",
+		"db:migrate:deploy": "prisma migrate deploy",
+		"db:push": "prisma db push",
+		"db:generate": "prisma generate",
+		"db:studio": "prisma studio",
+		"db:seed": "tsx prisma/seed.ts",
+		"seed-admin": "tsx scripts/seed-admin.ts",
 		"docker:dev:up": "docker-compose -f docker-compose.dev.yml up -d",
 		"docker:dev:down": "docker-compose -f docker-compose.dev.yml down",
 		"docker:dev:clean": "docker-compose -f docker-compose.dev.yml down -v",
@@ -14,10 +21,14 @@
 		"docker:prod:up": "docker-compose up -d",
 		"docker:prod:down": "docker-compose down",
 		"docker:prod:build": "docker-compose up -d --build",
-		"docker:prod:logs": "docker-compose logs -f"
+		"docker:prod:logs": "docker-compose logs -f",
+		"docker:prod:clean": "docker-compose down -v",
+		"docker:prod:seed-admin": "docker-compose exec nextjs-app npx tsx scripts/seed-admin.ts"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.9.1",
+		"@prisma/adapter-pg": "^7.3.0",
+		"@prisma/client": "^7.3.0",
 		"@radix-ui/react-accordion": "^1.2.2",
 		"@radix-ui/react-alert-dialog": "^1.1.4",
 		"@radix-ui/react-aspect-ratio": "^1.1.1",
@@ -46,6 +57,8 @@
 		"@radix-ui/react-toggle-group": "^1.1.1",
 		"@radix-ui/react-tooltip": "^1.1.6",
 		"autoprefixer": "^10.4.20",
+		"bcryptjs": "^3.0.3",
+		"better-auth": "^1.4.17",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"cmdk": "1.0.4",
@@ -56,6 +69,8 @@
 		"lucide-react": "^0.454.0",
 		"next": "15.2.4",
 		"next-themes": "latest",
+		"pg": "^8.17.2",
+		"prisma": "^7.3.0",
 		"react": "^18.3.1",
 		"react-day-picker": "8.10.1",
 		"react-dom": "^18.3.1",
@@ -69,11 +84,23 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@types/bcryptjs": "^3.0.0",
 		"@types/node": "^22",
+		"@types/pg": "^8.16.0",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"dotenv": "^17.2.3",
 		"postcss": "^8",
 		"tailwindcss": "^3.4.17",
+		"tsx": "^4.21.0",
 		"typescript": "^5"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@prisma/engines",
+			"prisma",
+			"esbuild",
+			"sharp"
+		]
 	}
 }
