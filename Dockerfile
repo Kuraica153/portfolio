@@ -1,16 +1,3 @@
-# Install dependencies
-FROM node:20-alpine AS deps
-WORKDIR /app
-
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
-
-# Install dependencies
-RUN pnpm install --frozen-lockfile
-
 # Build the app
 FROM node:20-alpine AS builder
 WORKDIR /app
@@ -18,11 +5,16 @@ WORKDIR /app
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copy dependencies
-COPY --from=deps /app/node_modules ./node_modules
+# Copy package files first (for caching)
+COPY package.json pnpm-lock.yaml ./
+
+# Install all dependencies (including devDependencies for build)
+RUN pnpm install --frozen-lockfile
+
+# Copy source code
 COPY . .
 
-# Generate Prisma client and build
+# Generate Prisma client and build Next.js
 RUN pnpm prisma generate && pnpm build
 
 # Run the app (minimal standalone image)
@@ -36,13 +28,13 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Install pnpm for running migrations
+# Install pnpm for running migrations and scripts
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copy package files (needed for pnpm prisma commands)
+# Copy package files (needed for pnpm commands)
 COPY --chown=nextjs:nodejs package.json pnpm-lock.yaml ./
 
-# Install only production dependencies + prisma CLI + tools for seed-admin
+# Install only production dependencies + tools for migrations and seed-admin
 RUN pnpm install --prod --frozen-lockfile && \
     pnpm add prisma @prisma/adapter-pg pg bcryptjs tsx dotenv
 
@@ -53,7 +45,7 @@ COPY --chown=nextjs:nodejs prisma.config.ts ./
 # Copy scripts (for seed-admin)
 COPY --chown=nextjs:nodejs scripts ./scripts
 
-# Copy generated Prisma client
+# Copy generated Prisma client from builder
 COPY --from=builder --chown=nextjs:nodejs /app/lib/generated ./lib/generated
 
 # Copy Next.js standalone output
@@ -61,9 +53,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy entrypoint script
+# Copy entrypoint script and fix line endings (Windows -> Unix)
 COPY --chown=nextjs:nodejs docker-entrypoint.sh ./
-RUN chmod +x docker-entrypoint.sh
+RUN sed -i 's/\r$//' docker-entrypoint.sh && chmod +x docker-entrypoint.sh
 
 USER nextjs
 
